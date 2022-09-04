@@ -1,5 +1,5 @@
 override NAME = megaphone
-override CFLAGS = -std=c++98 -Wall -Wextra -Werror -Wno-used
+override CFLAGS = -std=c++98 -Wall -Wextra -Werror -Wno-unused
 override CC = c++
 
 OBJ = megaphone.o
