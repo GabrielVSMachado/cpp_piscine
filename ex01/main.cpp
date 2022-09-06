@@ -10,17 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include <iostream>
 
-int main (void)
-{
-    std::cout.width(10);
-    std::cout << std::left << 0 << "|";
-    std::cout.width(10);
-    std::cout << std::left << "gabrielVi." << "|";
-    std::cout.width(10);
-    std::cout << std::left << "machado" << "|";
-    std::cout.width(10);
-    std::cout << std::left << "ito" << "|" << std::endl;
-    return 0;
+int main(void) {
+  PhoneBook book;
+  std::string inputCommand;
+
+  std::cout << std::endl;
+  std::cout << "You can enter one of the three commands: ADD, SEARCH and EXIT"
+            << std::endl;
+  std::cout << "ADD: add a new contact into phone book." << std::endl;
+  std::cout << "SEARCH: search information from contacts in the phone book."
+            << std::endl;
+  std::cout << "EXIT: exit the program." << std::endl;
+
+  do {
+    std::cout << "\nEnter the wanted command: ";
+    std::cin >> inputCommand;
+
+    if (std::cin.eof()) {
+      std::cout << std::endl;
+      return 1;
+    }
+
+    if (inputCommand == "ADD") {
+      if (!book.add()) {
+        std::cout << "User not added: use your brain to find the error"
+                  << std::endl;
+        continue;
+      }
+      std::cout << "User added with success" << std::endl;
+    } else if (inputCommand == "SEARCH") {
+      PhoneBook::search(book);
+    } else if (inputCommand != "EXIT") {
+      std::cout << "Invalid Command !!!" << std::endl;
+      continue;
+    }
+
+  } while (inputCommand != "EXIT");
+  return 0;
 }

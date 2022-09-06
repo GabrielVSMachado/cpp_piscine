@@ -15,5 +15,8 @@
 #include "PhoneBook.hpp"
 
 void printHeader(void);
+bool validateNames(std::string const name);
 void printListContacts(PhoneBook const &book);
+void printContactInformation(Contact const &toPrint);
+bool validateNumber(std::string const number);
 #endif // !UTILS_HPP

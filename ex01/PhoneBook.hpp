@@ -21,7 +21,7 @@ public:
   ~PhoneBook(void);
 
   Contact getContact(unsigned int index) const;
-  void add(Contact const &newContact);
+  bool add(void);
   unsigned int getBookSize(void) const;
 
   static void search(PhoneBook const &book);
@@ -29,6 +29,8 @@ public:
 private:
   Contact book[8];
   unsigned int bookSize;
+  bool validateContact(Contact const &newContact) const;
+  static Contact getNewContact(void);
 };
 
 #endif // !PHONEBOOK_HPP

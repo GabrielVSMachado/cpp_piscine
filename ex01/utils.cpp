@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include "PhoneBook.hpp"
+#include <cctype>
 #include <iostream>
 
 static std::string formatString(std::string str) {
@@ -60,9 +61,35 @@ void printListContacts(PhoneBook const &book) {
 }
 
 void printHeader(void) {
-    printWithPadding("Index");
-    printWithPadding("Name");
-    printWithPadding("LastName");
-    printWithPadding("NickName");
-    std::cout << std::endl;
+  printWithPadding("Index");
+  printWithPadding("Name");
+  printWithPadding("LastName");
+  printWithPadding("NickName");
+  std::cout << std::endl;
+}
+
+void printContactInformation(Contact const &toPrint) {
+  std::cout << toPrint.firstName << std::endl;
+  std::cout << toPrint.lastName << std::endl;
+  std::cout << toPrint.getNickName() << std::endl;
+  std::cout << toPrint.getPhoneNumber() << std::endl;
+  std::cout << toPrint.getDarkestSecret() << std::endl;
+}
+
+bool validateNames(std::string const name) {
+  for (unsigned int i = 0; i < name.length(); i++) {
+    if (!std::isalpha(name[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool validateNumber(std::string const number) {
+  for (unsigned int i = 0; i < number.length(); i++) {
+    if (!std::isdigit(number[i])) {
+      return false;
+    }
+  }
+  return true;
 }
