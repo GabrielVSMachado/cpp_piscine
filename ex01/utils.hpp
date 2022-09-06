@@ -15,6 +15,7 @@
 #include "PhoneBook.hpp"
 
 void printHeader(void);
+std::string getValueFromCIN(void);
 bool validateNames(std::string const name);
 void printListContacts(PhoneBook const &book);
 void printContactInformation(Contact const &toPrint);

@@ -12,6 +12,7 @@
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include "utils.hpp"
 #include <iostream>
 
 int main(void) {
@@ -28,23 +29,22 @@ int main(void) {
 
   do {
     std::cout << "\nEnter the wanted command: ";
-    std::cin >> inputCommand;
-
-    if (std::cin.eof()) {
-      std::cout << std::endl;
-      return 1;
-    }
+    inputCommand = getValueFromCIN();
 
     if (inputCommand == "ADD") {
+
       if (!book.add()) {
         std::cout << "User not added: use your brain to find the error"
                   << std::endl;
         continue;
       }
       std::cout << "User added with success" << std::endl;
-    } else if (inputCommand == "SEARCH") {
+
+    }
+    else if (inputCommand == "SEARCH") {
       PhoneBook::search(book);
-    } else if (inputCommand != "EXIT") {
+    }
+    else if (inputCommand != "EXIT") {
       std::cout << "Invalid Command !!!" << std::endl;
       continue;
     }

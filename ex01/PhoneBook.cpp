@@ -42,15 +42,15 @@ Contact PhoneBook::getNewContact(void) {
   std::string darkestSecret;
 
   std::cout << "FirstName: ";
-  std::cin >> firstName;
+  firstName = getValueFromCIN();
   std::cout << "LastName: ";
-  std::cin >> lastName;
+  lastName = getValueFromCIN();
   std::cout << "nickName: ";
-  std::cin >> nickName;
+  nickName = getValueFromCIN();
   std::cout << "phoneNumber: ";
-  std::cin >> phoneNumber;
+  phoneNumber = getValueFromCIN();
   std::cout << "darkestSecret: ";
-  std::cin >> darkestSecret;
+  darkestSecret = getValueFromCIN();
 
   Contact newContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
   return newContact;
@@ -76,10 +76,12 @@ void PhoneBook::search(PhoneBook const &book) {
 
   while (true) {
     std::cout << "Input contact's index wanted: ";
-    std::cin >> inputIndex;
+    inputIndex = getValueFromCIN();
+
     if (validateNumber(inputIndex)) {
       break;
     }
+
     std::cout << "Index must a positive number: " << std::endl;
   }
 

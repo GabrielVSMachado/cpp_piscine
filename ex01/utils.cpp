@@ -13,6 +13,7 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 #include <cctype>
+#include <cstdlib>
 #include <iostream>
 
 static std::string formatString(std::string str) {
@@ -53,7 +54,7 @@ void printListContacts(PhoneBook const &book) {
   std::string valueToPrint;
   Contact currentContact;
 
-  bookSize = bookSize < 8 ? bookSize : 7;
+  bookSize = bookSize < 8 ? bookSize - 1 : 7;
   for (unsigned int i = 0; i <= bookSize; i++) {
     currentContact = book.getContact(i);
     printFormatedString(&currentContact, i);
@@ -92,4 +93,16 @@ bool validateNumber(std::string const number) {
     }
   }
   return true;
+}
+
+std::string getValueFromCIN(void)
+{
+  std::string value;
+
+  std::cin >> value;
+  if (std::cin.eof()) {
+    std::cout << std::endl;
+    exit(1);
+  }
+  return value;
 }
