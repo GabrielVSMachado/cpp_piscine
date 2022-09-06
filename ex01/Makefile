@@ -9,7 +9,7 @@ endef
 
 
 override CC = c++
-override CFLAGS = -std=c++98 -Wall -Wextra -Werror -Wno-unused -g3
+override CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 OBJ = $(SRC:%.cpp=%.o)
 
