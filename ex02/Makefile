@@ -1,7 +1,7 @@
 override NAME = account
 override CFLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 override CC = c++
-override SRC = Account.cpp
+override SRC = Account.cpp tests.cpp
 override OBJ = $(SRC:%.cpp=%.o)
 
 all: $(NAME)
@@ -17,3 +17,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
