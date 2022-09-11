@@ -1,12 +1,11 @@
-NAME = BraiiiiiiinnnzzzZ
+NAME = Moar_Brainz
 override CC = c++
 override CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 override define SRC
 	main.cpp
 	Zombie.cpp
-	randomChump.cpp
-	newZombie.cpp
+	zombieHorde.cpp
 endef
 
 override OBJ = $(SRC:%.cpp=%.o)
