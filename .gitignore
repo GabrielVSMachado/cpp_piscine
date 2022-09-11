@@ -3,3 +3,4 @@ megaphone
 phonebook
 .cache/
 *.json
+*.pdf
