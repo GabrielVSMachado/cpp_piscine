@@ -4,3 +4,4 @@ phonebook
 .cache/
 *.json
 *.pdf
+*.replace
