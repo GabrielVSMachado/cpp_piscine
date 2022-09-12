@@ -35,9 +35,9 @@ bool SedIsForLosers::createOffStream(std::string fileName) {
   return ((this->_fileToWrite.rdstate() & std::ofstream::failbit) == 0);
 }
 
-void SedIsForLosers::changeWordsAndWriteInOffFile(std::string s1, std::string s2) {
+void SedIsForLosers::changeWordsAndWriteInOffFile(std::string s1,
+                                                  std::string s2) {
   std::string line, after, before;
-  std::size_t found;
 
   while (true) {
     std::getline(*this->_fileToRead, line);
@@ -45,17 +45,14 @@ void SedIsForLosers::changeWordsAndWriteInOffFile(std::string s1, std::string s2
       return;
     }
 
-    found = line.find(s1);
-
-    if (found != std::string::npos) {
+    for (std::size_t found = line.find(s1); found != std::string::npos;
+         found = line.find(s1)) {
       before = line.substr(0, found);
       after = line.substr(found + s1.length(),
                           line.length() - (before.length() + s1.length()));
-      this->_fileToWrite << before << s2 << after;
-    } else {
-      this->_fileToWrite << line;
+      line = after;
+      this->_fileToWrite << before << s2;
     }
-
-    this->_fileToWrite << std::endl;
+    this->_fileToWrite << line << std::endl;
   }
 }
