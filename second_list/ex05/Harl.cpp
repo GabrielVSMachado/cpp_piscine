@@ -12,6 +12,10 @@
 
 #include "Harl.hpp"
 
+Harl::HarlMemFn Harl::f[4] = {
+  &Harl::_debug, &Harl::_error, &Harl::_info, &Harl::_warning
+};
+
 Harl::Harl(void) { return; }
 Harl::~Harl(void) { return; }
 
@@ -39,9 +43,6 @@ void Harl::_error(void) const {
 }
 
 void Harl::complain(std::string level) const {
-  HarlMemFn const f[4] = {
-    &Harl::_debug, &Harl::_error, &Harl::_info, &Harl::_warning
-  };
   unsigned int nlevel = (level[0] % 16) - 4;
-  (this->*(f[ nlevel < 4 ? nlevel : nlevel - 3 ]))();
+  (this->*(Harl::f[ nlevel < 4 ? nlevel : nlevel - 3 ]))();
 }
