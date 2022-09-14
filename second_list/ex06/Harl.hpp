@@ -17,18 +17,20 @@
 
 class Harl
 {
-public:
-  Harl(void);
-  ~Harl(void);
-
-  void complain(std::string level) const;
 
 private:
   void _debug(void) const;
   void _info(void) const;
   void _warning(void) const;
   void _error(void) const;
+
+public:
+  Harl(void);
+  ~Harl(void);
+  typedef void (Harl::* const HarlMemFn)(void) const;
+
+  void complain(std::string level) const;
+  static HarlMemFn const f[4];
 };
 
-typedef void (Harl::* const HarlMemFn)(void) const;
 #endif // !HARL_HPP
