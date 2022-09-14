@@ -3,10 +3,7 @@ override CC = c++
 override CFLAGS = -std=c++98 -Wall -Wextra -Werror
 override RM = rm -f
 
-override define SRC
-	main.cpp
-	SedIsForLosers.cpp
-endef
+override SRC = main.cpp SedIsForLosers.cpp
 
 override OBJ = $(SRC:%.cpp=%.o)
 
