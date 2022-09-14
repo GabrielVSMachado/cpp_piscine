@@ -1,0 +1,25 @@
+NAME = harlFilter
+override CC = c++
+override CFLAGS = -std=c++98 -Wall -Werror -Wextra
+override SRC = main.cpp Harl.cpp
+override OBJ = $(SRC:%.cpp=%.o)
+override RM = rm -f
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $@
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+clean:
+	$(RM) $(OBJ)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
