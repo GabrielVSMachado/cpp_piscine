@@ -43,15 +43,21 @@ int main(int argc, char *argv[]) {
       std::cout << "[ DEBUG ]" << std::endl;
       harl.complain("DEBUG");
       std::cout << std::endl;
+      goto info;
     case INFO:
+info:
       std::cout << "[ INFO ]" << std::endl;
       harl.complain("INFO");
       std::cout << std::endl;
+      goto warning;
     case WARNING:
+warning:
       std::cout << "[ WARNING ]" << std::endl;
       harl.complain("WARNING");
       std::cout << std::endl;
+      goto error;
     case ERROR:
+error:
       std::cout << "[ ERROR ]" << std::endl;
       harl.complain("ERROR");
       std::cout << std::endl;
