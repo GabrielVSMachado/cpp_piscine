@@ -1,6 +1,6 @@
-NAME = fixed_point
-override CC = c++
-override CFLAGS = -std=c++98 -Wall -Wextra -Werror
+NAME = a.out
+override CXX = c++
+override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 override SRC = main.cpp Fixed.cpp
 override OBJ = $(SRC:%.cpp=%.o)
 override RM = rm -f
@@ -8,7 +8,7 @@ override RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $@
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $@
 
 clean:
 	$(RM) $(OBJ)

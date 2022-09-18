@@ -21,8 +21,13 @@ public:
   Fixed &operator=(Fixed const &);
   ~Fixed(void);
 
+  int getRawBits(void) const;
+  void setRawBits(int const raw);
+
+
 private:
-  
+  int _fixedPoint;
+  static int const _fractionalBits;
 };
 
 #endif // !FIXED_HPP
