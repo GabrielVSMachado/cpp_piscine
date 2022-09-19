@@ -15,6 +15,8 @@
 
 #include <iostream>
 
+#define epsilon std::pow(2, -8)
+
 class Fixed {
 public:
   Fixed(void);
@@ -35,29 +37,25 @@ public:
   bool operator<=(Fixed const &) const;
   bool operator==(Fixed const &) const;
   bool operator!=(Fixed const &) const;
-  // Fixed& operator++(int);
-  // void operator++(void);
-  // Fixed& operator--(int);
-  // void operator--(void);
+  Fixed operator++(int);
+  Fixed const & operator++(void);
+  Fixed operator--(int);
+  Fixed const & operator--(void);
 
   int getRawBits(void) const;
-  void setRawBits(int const newValue);
+  void setRawBits(float const newValue);
   float toFloat(void) const;
   int toInt(void) const;
 
-  /* static Fixed& min(Fixed const &, Fixed const &);
+  static Fixed const & min(Fixed const &, Fixed const &);
   static Fixed& min(Fixed&, Fixed &);
-  static Fixed& max(Fixed const &, Fixed const &);
-  static Fixed& max(Fixed&, Fixed&); */
+  static Fixed const & max(Fixed const &, Fixed const &);
+  static Fixed& max(Fixed&, Fixed&);
 
 private:
   int _rawBits;
   static int const _fixedExponentRange;
 };
-
-// Booleans
-
-// Arithmetics
 
 std::ostream &operator<<(std::ostream &, Fixed const &);
 #endif // !FIXED_HPP
