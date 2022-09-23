@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap(void)
     : _hit(100), _energy(50), _attack(20), _name("scavtrap") {
-  std::cout << "Default constructor ScavTrap called." << std::endl;
+  std::cout << "Default constructor from was ScavTrap called." << std::endl;
   return;
 }
 
@@ -25,7 +25,7 @@ ScavTrap::ScavTrap(ScavTrap const &other) {
 
 ScavTrap::ScavTrap(std::string name)
     : _hit(100), _energy(50), _attack(20), _name(name) {
-  std::cout << "Called constructor from ScavTrap." << std::endl;
+  std::cout << "ScavTrap know as " << name << " arrive!!!" << std::endl;
   return;
 }
 
@@ -42,7 +42,13 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &other) {
   return *this;
 }
 
-void ScavTrap::attack(std::string& target) {
+void ScavTrap::guardGate(void) {
+  std::cout << "ScavTrap " << this->_name << " is now in the Gate keeper mode.";
+  std::cout << std::endl;
+  return;
+}
+
+void ScavTrap::attack(std::string const &target) {
   if (this->_energy == 0) {
     this->outOfEnergyWarning("ScavTrap");
   }
@@ -50,7 +56,38 @@ void ScavTrap::attack(std::string& target) {
     this->deadObject("ScavTrap");
   }
   std::cout << "ScavTrap " << this->_name;
-  std::cout << " attacks " << target << ", causing " << this->_attack;
+  std::cout << " attacks " << target << ", with " << this->_attack;
   std::cout << " points of damage!" << std::endl;
   --this->_energy;
 }
+
+void ScavTrap::beRepaired(unsigned int amount) {
+  if (this->_energy == 0) {
+    outOfEnergyWarning("ScavTrap");
+    return;
+  }
+  if (this->_hit == 0) {
+    this->deadObject("ScavTrap");
+    return;
+  }
+  std::cout << "ScavTrap " << this->_name;
+  std::cout << " repair itself by " << amount << " points!" << std::endl;
+  --this->_energy;
+  this->_hit += amount;
+  this->_hit = this->_hit < 100 ? this->_hit : 100;
+}
+
+void ScavTrap::takeDamage(unsigned int amount) {
+  if (this->_hit == 0) {
+    this->deadObject("ScavTrap");
+    return;
+  }
+  std::cout << "ScavTrap " << this->_name << " took " << amount;
+  std::cout << " points of Damage!" << std::endl;
+  this->_hit -= (this->_hit - amount) > this->_hit ? this->_hit : amount;
+  if (this->_hit == 0) {
+    std::cout << "ScavTrap " << this->_name << " Die!" << std::endl;
+  }
+}
+
+std::string const &ScavTrap::getName(void) const { return this->_name; }

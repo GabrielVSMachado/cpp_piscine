@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : ClapTrap {
+class ScavTrap : public ClapTrap {
 public:
   ScavTrap(void);
   ScavTrap(ScavTrap const &);
@@ -24,7 +24,10 @@ public:
   ~ScavTrap(void);
 
   void guardGate(void);
-  void attack(std::string& target);
+  void attack(std::string const & target);
+  std::string const & getName(void) const;
+  void takeDamage(unsigned int amount);
+  void beRepaired(unsigned int amount);
 
 private:
   unsigned int _hit;

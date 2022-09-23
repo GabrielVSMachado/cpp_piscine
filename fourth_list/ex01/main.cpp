@@ -10,21 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void) {
-  ClapTrap starks("Stark's");
-  ClapTrap johnSnow(starks);
-  ClapTrap Lannisters("Lannister's");
+	ScavTrap theoden = ScavTrap("Théoden");
+	ScavTrap uruk_hai("Uruk-hai");
 
-  Lannisters.attack("Stark's");
-  starks.takeDamage(1);
-  Lannisters.attack("Stark's");
-  starks.takeDamage(5);
-  starks.beRepaired(2);
-  Lannisters.attack("Stark's");
-  starks.takeDamage(6);
-  starks.beRepaired(1);
-  std::cout << "See you on next season." << std::endl;
-  return 0;
+	theoden.attack(uruk_hai.getName());
+	uruk_hai.takeDamage(1);
+	uruk_hai.attack(theoden.getName());
+	theoden.takeDamage(25);
+	uruk_hai.attack(theoden.getName());
+	theoden.takeDamage(50);
+	uruk_hai.attack(theoden.getName());
+	theoden.takeDamage(20);
+	std::cout << "Maybe wait Gandalf Arrive !!! ..." << std::endl;
+	std::cout << "To the fortress !!!, said Théoden." << std::endl;
+	theoden.guardGate();
+	ScavTrap gandalf("Gandalf");
+	gandalf.attack(uruk_hai.getName());
+	uruk_hai.takeDamage(1000);
+	std::cout << "Finally they won the war..." << std::endl;
+	return 0;
 }

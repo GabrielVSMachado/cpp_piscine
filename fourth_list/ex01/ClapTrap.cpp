@@ -12,8 +12,8 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _hit(10), _energy(10), _attack(0), _name("wilson") {
-  std::cout << "Default Constructor was called." << std::endl;
+ClapTrap::ClapTrap(void) : _hit(10), _energy(10), _attack(0), _name("") {
+  std::cout << "Default Constructor from ClapTrap was called." << std::endl;
   return;
 }
 ClapTrap::ClapTrap(ClapTrap const &other) {
@@ -23,12 +23,13 @@ ClapTrap::ClapTrap(ClapTrap const &other) {
 
 ClapTrap::ClapTrap(std::string name)
     : _hit(10), _energy(10), _attack(0), _name(name) {
-  std::cout << "Constructor with name paramenter was called." << std::endl;
+  std::cout << "Constructor from ClapTrap with name paramenter was called.";
+  std::cout << std::endl;
   return;
 }
 
 ClapTrap::~ClapTrap(void) {
-  std::cout << "Destructor was called." << std::endl;
+  std::cout << "Destructor from ClapTrap was called." << std::endl;
   return;
 }
 
@@ -84,13 +85,13 @@ void ClapTrap::takeDamage(unsigned int amount) {
   }
 }
 
-void ClapTrap::deadObject(std::string const & type) const {
+void ClapTrap::deadObject(std::string const &type) const {
   std::cout << type << " " << this->_name;
   std::cout << " couldn't do anything because is Dead!" << std::endl;
   return;
 }
 
-void ClapTrap::outOfEnergyWarning(std::string const & type) const {
+void ClapTrap::outOfEnergyWarning(std::string const &type) const {
   std::cout << type << " " << this->_name << " Out of energy." << std::endl;
   return;
 }
