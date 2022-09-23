@@ -27,6 +27,10 @@ public:
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
 
+protected:
+  void deadObject(std::string const & type) const;
+  void outOfEnergyWarning(std::string const & type) const;
+
 private:
   unsigned int _hit;
   unsigned int _energy;

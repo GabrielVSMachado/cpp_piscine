@@ -40,24 +40,13 @@ ClapTrap &ClapTrap::operator=(ClapTrap const &other) {
   return *this;
 }
 
-static void outOfEnergyWarning(std::string const &name) {
-  std::cout << "ClapTrap " << name << " Out of energy" << std::endl;
-  return;
-}
-
-static void deadObject(std::string const &name) {
-  std::cout << "ClapTrap " << name;
-  std::cout << " couldn't do anything because is Dead!" << std::endl;
-  return;
-}
-
 void ClapTrap::attack(std::string const &target) {
-  if (this->_energy <= 0) {
-    outOfEnergyWarning(this->_name);
+  if (this->_energy == 0) {
+    outOfEnergyWarning("ClapTrap");
     return;
   }
   if (this->_hit == 0) {
-    deadObject(this->_name);
+    this->deadObject("ClapTrap");
     return;
   }
   std::cout << "ClapTrap " << this->_name;
@@ -67,12 +56,12 @@ void ClapTrap::attack(std::string const &target) {
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-  if (this->_energy <= 0) {
-    outOfEnergyWarning(this->_name);
+  if (this->_energy == 0) {
+    outOfEnergyWarning("ClapTrap");
     return;
   }
   if (this->_hit == 0) {
-    deadObject(this->_name);
+    this->deadObject("ClapTrap");
     return;
   }
   std::cout << "ClapTrap " << this->_name;
@@ -84,7 +73,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 
 void ClapTrap::takeDamage(unsigned int amount) {
   if (this->_hit == 0) {
-    deadObject(this->_name);
+    this->deadObject("ClapTrap");
     return;
   }
   std::cout << "ClapTrap " << this->_name << " took " << amount;
@@ -93,4 +82,15 @@ void ClapTrap::takeDamage(unsigned int amount) {
   if (this->_hit == 0) {
     std::cout << "ClapTrap " << this->_name << " Die!" << std::endl;
   }
+}
+
+void ClapTrap::deadObject(std::string const & type) const {
+  std::cout << type << " " << this->_name;
+  std::cout << " couldn't do anything because is Dead!" << std::endl;
+  return;
+}
+
+void ClapTrap::outOfEnergyWarning(std::string const & type) const {
+  std::cout << type << " " << this->_name << " Out of energy." << std::endl;
+  return;
 }
