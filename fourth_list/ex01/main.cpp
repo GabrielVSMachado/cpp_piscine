@@ -15,6 +15,7 @@
 int main(void) {
 	ScavTrap theoden = ScavTrap("Théoden");
 	ScavTrap uruk_hai("Uruk-hai");
+  ScavTrap ork(uruk_hai);
 
 	theoden.attack(uruk_hai.getName());
 	uruk_hai.takeDamage(1);

@@ -6,11 +6,12 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 01:49:25 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/09/23 02:12:53 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:27:47 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 
 ScavTrap::ScavTrap(void)
     : _hit(100), _energy(50), _attack(20), _name("scavtrap") {
@@ -18,7 +19,7 @@ ScavTrap::ScavTrap(void)
   return;
 }
 
-ScavTrap::ScavTrap(ScavTrap const &other) {
+ScavTrap::ScavTrap(ScavTrap const &other) : ClapTrap(other) {
   *this = other;
   return;
 }
