@@ -20,12 +20,21 @@ public:
   ClapTrap(void);
   ClapTrap(ClapTrap const &);
   ClapTrap(std::string name);
+  ClapTrap(std::string, unsigned int, unsigned int, unsigned int);
   ClapTrap &operator=(ClapTrap const &);
   ~ClapTrap(void);
 
   void attack(std::string const &target);
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
+  void setHit(unsigned int);
+  void setEnergy(unsigned int);
+  void setAttack(unsigned int);
+  void setName(std::string const &);
+  unsigned int getHit(void) const;
+  unsigned int getEnergy(void) const;
+  unsigned int getAttack(void) const;
+  std::string getName(void) const;
 
 protected:
   void deadObject(std::string const & type) const;

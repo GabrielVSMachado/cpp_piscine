@@ -13,82 +13,52 @@
 #include "ScavTrap.hpp"
 #include "ClapTrap.hpp"
 
-ScavTrap::ScavTrap(void)
-    : _hit(100), _energy(50), _attack(20), _name("scavtrap") {
+ScavTrap::ScavTrap(void) : ClapTrap("ScavTrap", 100, 50, 20) {
   std::cout << "Default constructor from was ScavTrap called." << std::endl;
   return;
 }
 
 ScavTrap::ScavTrap(ScavTrap const &other) : ClapTrap(other) {
-  *this = other;
+  std::cout << "Copy assign operator from ScavTrap called." << std::endl;
   return;
 }
 
-ScavTrap::ScavTrap(std::string name)
-    : _hit(100), _energy(50), _attack(20), _name(name) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20) {
   std::cout << "ScavTrap know as " << name << " arrive!!!" << std::endl;
   return;
 }
 
 ScavTrap::~ScavTrap(void) {
-  std::cout << "Destructor from ScavTrap called." << std::endl;
+  std::cout << "Destructor for " << this->getName() << " called." << std::endl;
   return;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &other) {
-  this->_name = other._name;
-  this->_attack = other._attack;
-  this->_energy = other._energy;
-  this->_hit = other._hit;
+  this->setName(other.getName());
+  this->setHit(other.getHit());
+  this->setEnergy(other.getEnergy());
+  this->setAttack(other.getAttack());
   return *this;
 }
 
 void ScavTrap::guardGate(void) {
-  std::cout << "ScavTrap " << this->_name << " is now in the Gate keeper mode.";
+  std::cout << "ScavTrap " << this->getName()
+            << " is now in the Gate keeper mode.";
   std::cout << std::endl;
   return;
 }
 
 void ScavTrap::attack(std::string const &target) {
-  if (this->_energy == 0) {
+  if (this->getEnergy() == 0) {
     this->outOfEnergyWarning("ScavTrap");
+    return;
   }
-  if (this->_hit == 0) {
+  if (this->getHit() == 0) {
     this->deadObject("ScavTrap");
+    return;
   }
-  std::cout << "ScavTrap " << this->_name;
-  std::cout << " attacks " << target << ", with " << this->_attack;
+  std::cout << "ScavTrap " << this->getName();
+  std::cout << " attacks " << target << ", with " << this->getAttack();
   std::cout << " points of damage!" << std::endl;
-  --this->_energy;
+  this->setEnergy(this->getEnergy() - 1);
 }
-
-void ScavTrap::beRepaired(unsigned int amount) {
-  if (this->_energy == 0) {
-    outOfEnergyWarning("ScavTrap");
-    return;
-  }
-  if (this->_hit == 0) {
-    this->deadObject("ScavTrap");
-    return;
-  }
-  std::cout << "ScavTrap " << this->_name;
-  std::cout << " repair itself by " << amount << " points!" << std::endl;
-  --this->_energy;
-  this->_hit += amount;
-  this->_hit = this->_hit < 100 ? this->_hit : 100;
-}
-
-void ScavTrap::takeDamage(unsigned int amount) {
-  if (this->_hit == 0) {
-    this->deadObject("ScavTrap");
-    return;
-  }
-  std::cout << "ScavTrap " << this->_name << " took " << amount;
-  std::cout << " points of Damage!" << std::endl;
-  this->_hit -= (this->_hit - amount) > this->_hit ? this->_hit : amount;
-  if (this->_hit == 0) {
-    std::cout << "ScavTrap " << this->_name << " Die!" << std::endl;
-  }
-}
-
-std::string const &ScavTrap::getName(void) const { return this->_name; }

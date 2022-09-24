@@ -25,15 +25,6 @@ public:
 
   void guardGate(void);
   void attack(std::string const & target);
-  std::string const & getName(void) const;
-  void takeDamage(unsigned int amount);
-  void beRepaired(unsigned int amount);
-
-private:
-  unsigned int _hit;
-  unsigned int _energy;
-  unsigned int _attack;
-  std::string _name;
 };
 
 #endif // !SCAVTRAP_HPP
