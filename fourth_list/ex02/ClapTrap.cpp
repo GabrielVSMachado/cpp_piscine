@@ -16,9 +16,18 @@ ClapTrap::ClapTrap(void) : _hit(10), _energy(10), _attack(0), _name("") {
   std::cout << "Default Constructor from ClapTrap was called." << std::endl;
   return;
 }
+
 ClapTrap::ClapTrap(ClapTrap const &other) {
   std::cout << "Copy assignment constructor was called." << std::endl;
   *this = other;
+}
+
+ClapTrap::ClapTrap(std::string name, unsigned int hit, unsigned int energy,
+                   unsigned int attack)
+    : _hit(hit), _energy(energy), _attack(attack), _name(name) {
+  std::cout << "Constructor with all paramenter in ClapTrap called.";
+  std::cout << std::endl;
+  return;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -95,3 +104,12 @@ void ClapTrap::outOfEnergyWarning(std::string const &type) const {
   std::cout << type << " " << this->_name << " Out of energy." << std::endl;
   return;
 }
+
+void ClapTrap::setAttack(unsigned int newAttack) { this->_attack = newAttack; }
+void ClapTrap::setEnergy(unsigned int newEnergy) { this->_energy = newEnergy; }
+void ClapTrap::setHit(unsigned int newHit) { this->_hit = newHit; }
+void ClapTrap::setName(std::string const &newName) { this->_name = newName; }
+unsigned int ClapTrap::getEnergy(void) const { return this->_energy; }
+unsigned int ClapTrap::getAttack(void) const { return this->_attack; }
+unsigned int ClapTrap::getHit(void) const { return this->_hit; }
+std::string ClapTrap::getName(void) const { return this->_name; }

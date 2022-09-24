@@ -25,15 +25,6 @@ public:
 
   void highFivesGuys(void);
   void attack(std::string const &);
-  void takeDamage(unsigned int);
-  void beRepaired(unsigned int);
-  std::string const &getName(void) const;
-
-private:
-  unsigned int _hit;
-  unsigned int _energy;
-  unsigned int _attack;
-  std::string _name;
 };
 
 #endif // !FRAGTRAP_HPP

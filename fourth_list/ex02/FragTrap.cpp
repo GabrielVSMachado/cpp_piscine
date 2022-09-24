@@ -13,13 +13,12 @@
 #include "FragTrap.hpp"
 #include "ClapTrap.hpp"
 
-FragTrap::FragTrap(void) : _hit(100), _energy(100), _attack(30), _name("") {
+FragTrap::FragTrap(void) : ClapTrap("FragTrap", 100, 100, 30) {
   std::cout << "Default Constructor from FragTrap was called." << std::endl;
   return;
 }
 
-FragTrap::FragTrap(std::string name)
-    : _hit(100), _energy(100), _attack(30), _name(name) {
+FragTrap::FragTrap(std::string name) : ClapTrap(name, 100, 100, 30) {
   std::cout << "FragTrap know as " << name << " show up.";
   std::cout << std::endl;
   return;
@@ -36,57 +35,27 @@ FragTrap::~FragTrap(void) {
 }
 
 FragTrap &FragTrap::operator=(FragTrap const &other) {
-  this->_name = other._name;
-  this->_hit = other._hit;
-  this->_attack = other._attack;
-  this->_energy = other._energy;
+  this->setName(other.getName());
+  this->setAttack(other.getAttack());
+  this->setHit(other.getHit());
+  this->setEnergy(other.getEnergy());
   return *this;
 }
 
 void FragTrap::highFivesGuys(void) {
-  std::cout << this->_name << ": Do you wanna a highfive ?" << std::endl;
+  std::cout << this->getName() << ": Do you wanna a highfive ?" << std::endl;
   return;
 }
 
 void FragTrap::attack(std::string const &target) {
-  if (this->_hit == 0) {
+  if (this->getHit() == 0) {
     this->deadObject("FragTrap");
   }
-  if (this->_energy == 0) {
+  if (this->getEnergy() == 0) {
     this->outOfEnergyWarning("FragTrap");
   }
-  std::cout << "FragTrap " << this->_name;
-  std::cout << " attacks " << target << ", with " << this->_attack;
+  std::cout << "FragTrap " << this->getName();
+  std::cout << " attacks " << target << ", with " << this->getAttack();
   std::cout << " points of damage!" << std::endl;
-  --this->_energy;
+  this->setEnergy(this->getEnergy() - 1);
 }
-
-void FragTrap::takeDamage(unsigned int amount) {
-  if (this->_hit == 0) {
-    this->deadObject("FragTrap");
-    return;
-  }
-  this->_hit -= amount > this->_hit ? this->_hit : amount;
-  if (this->_hit == 0) {
-    std::cout << "FragTrap die !!!" << std::endl;
-  }
-  return;
-}
-
-void FragTrap::beRepaired(unsigned int amount) {
-  if (this->_hit == 0) {
-    this->deadObject("FragTrap");
-    return;
-  }
-  if (this->_energy == 0) {
-    this->outOfEnergyWarning("FragTrap");
-    return;
-  }
-  std::cout << "FragTrap " << this->_name;
-  std::cout << " repair itself by " << amount << " points!" << std::endl;
-  --this->_energy;
-  this->_hit += amount;
-  this->_hit = this->_hit < 100 ? this->_hit : 100;
-}
-
-std::string const &FragTrap::getName(void) const { return this->_name; }
