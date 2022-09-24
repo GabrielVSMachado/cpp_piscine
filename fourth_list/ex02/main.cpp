@@ -6,30 +6,21 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 01:11:04 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/09/21 01:30:19 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:22:47 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void) {
-	ScavTrap theoden = ScavTrap("Théoden");
-	ScavTrap uruk_hai("Uruk-hai");
+  FragTrap fragTrap = FragTrap("PennyWise");
+  FragTrap stupid("StupidKid");
 
-	theoden.attack(uruk_hai.getName());
-	uruk_hai.takeDamage(1);
-	uruk_hai.attack(theoden.getName());
-	theoden.takeDamage(25);
-	uruk_hai.attack(theoden.getName());
-	theoden.takeDamage(50);
-	uruk_hai.attack(theoden.getName());
-	theoden.takeDamage(20);
-	std::cout << "Maybe wait Gandalf Arrive !!! ..." << std::endl;
-	std::cout << "To the fortress !!!, said Théoden." << std::endl;
-	theoden.guardGate();
-	ScavTrap gandalf("Gandalf");
-	gandalf.attack(uruk_hai.getName());
-	uruk_hai.takeDamage(1000);
-	std::cout << "Finally they won the war..." << std::endl;
-	return 0;
+  fragTrap.highFivesGuys();
+  std::cout << "Isn't a ballon ?" << std::endl;
+  std::cout << "Do you wanna a ballon ?" << std::endl;
+  std::cout << "Of course!" << std::endl;
+  fragTrap.attack(stupid.getName());
+  stupid.takeDamage(1000);
+  return 0;
 }

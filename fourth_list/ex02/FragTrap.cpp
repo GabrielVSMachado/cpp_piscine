@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 21:13:48 by gvitor-s          #+#    #+#             */
+/*   Updated: 2022/09/23 21:20:42 by gvitor-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "FragTrap.hpp"
+#include "ClapTrap.hpp"
 
 FragTrap::FragTrap(void) : _hit(100), _energy(100), _attack(30), _name("") {
   std::cout << "Default Constructor from FragTrap was called." << std::endl;
@@ -7,12 +20,12 @@ FragTrap::FragTrap(void) : _hit(100), _energy(100), _attack(30), _name("") {
 
 FragTrap::FragTrap(std::string name)
     : _hit(100), _energy(100), _attack(30), _name(name) {
-  std::cout << "FragTrap know as " << name << " prepared for combat.";
+  std::cout << "FragTrap know as " << name << " show up.";
   std::cout << std::endl;
   return;
 }
 
-FragTrap::FragTrap(FragTrap const &other) {
+FragTrap::FragTrap(FragTrap const &other) : ClapTrap(other) {
   *this = other;
   return;
 }
@@ -22,7 +35,7 @@ FragTrap::~FragTrap(void) {
   return;
 }
 
- FragTrap& FragTrap::operator=(FragTrap const &other) {
+FragTrap &FragTrap::operator=(FragTrap const &other) {
   this->_name = other._name;
   this->_hit = other._hit;
   this->_attack = other._attack;
@@ -31,7 +44,7 @@ FragTrap::~FragTrap(void) {
 }
 
 void FragTrap::highFivesGuys(void) {
-  std::cout << this->_name <<  ": Do you wanna a highfive ?" << std::endl;
+  std::cout << this->_name << ": Do you wanna a highfive ?" << std::endl;
   return;
 }
 
@@ -51,6 +64,7 @@ void FragTrap::attack(std::string const &target) {
 void FragTrap::takeDamage(unsigned int amount) {
   if (this->_hit == 0) {
     this->deadObject("FragTrap");
+    return;
   }
   this->_hit -= amount > this->_hit ? this->_hit : amount;
   if (this->_hit == 0) {
@@ -58,3 +72,21 @@ void FragTrap::takeDamage(unsigned int amount) {
   }
   return;
 }
+
+void FragTrap::beRepaired(unsigned int amount) {
+  if (this->_hit == 0) {
+    this->deadObject("FragTrap");
+    return;
+  }
+  if (this->_energy == 0) {
+    this->outOfEnergyWarning("FragTrap");
+    return;
+  }
+  std::cout << "FragTrap " << this->_name;
+  std::cout << " repair itself by " << amount << " points!" << std::endl;
+  --this->_energy;
+  this->_hit += amount;
+  this->_hit = this->_hit < 100 ? this->_hit : 100;
+}
+
+std::string const &FragTrap::getName(void) const { return this->_name; }

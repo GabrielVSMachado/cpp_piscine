@@ -1,8 +1,8 @@
-NAME = clapTrap_scavTrap
+NAME = clapTrap_scavTrap_fragTrap
 override CXX = c++
 override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Wshadow
 override RM = rm -f
-override SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+override SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 override OBJ = $(SRC:%.cpp=%.o)
 
 

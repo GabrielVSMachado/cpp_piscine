@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 
 ScavTrap::ScavTrap(void)
     : _hit(100), _energy(50), _attack(20), _name("scavtrap") {
@@ -18,7 +19,7 @@ ScavTrap::ScavTrap(void)
   return;
 }
 
-ScavTrap::ScavTrap(ScavTrap const &other) {
+ScavTrap::ScavTrap(ScavTrap const &other) : ClapTrap(other) {
   *this = other;
   return;
 }
