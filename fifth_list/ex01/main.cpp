@@ -46,11 +46,9 @@ int main(void) {
     std::cout << std::endl;
   }
   {
-    Animal **array;
+    Animal *array[10];
     Dog dog;
     Dog *secondDog;
-
-    array = new Animal *[10];
 
     for (size_t i = 0; i < 10; i++) {
       if (i < 5) {
@@ -76,7 +74,9 @@ int main(void) {
               << secondDog->getBrain()->getIdea(0) << std::endl;
 
     delete secondDog;
-    delete[] array;
+    for (size_t i = 0; i < 10; i++) {
+      delete array[i];
+    }
   }
   return 0;
 }
