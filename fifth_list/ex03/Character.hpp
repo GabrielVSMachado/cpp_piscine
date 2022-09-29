@@ -6,14 +6,16 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:26:31 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/09/29 00:35:59 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:31:31 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
+#include <string>
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 class Character : public ICharacter {
 public:
@@ -29,7 +31,7 @@ public:
 
 private:
   AMateria *_inventory[4];
-  unsigned int _index;
+  unsigned int _inventory_size;
   std::string _name;
 };
 

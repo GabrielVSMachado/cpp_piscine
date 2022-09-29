@@ -28,17 +28,9 @@ Cure::~Cure(void) {
   return;
 }
 
-Cure& Cure::operator=(Cure const &other) {
+Cure &Cure::operator=(Cure const &other) {
   this->type = other.type;
   return *this;
 }
 
-AMateria* Cure::clone(void) const {
-  return new Cure();
-}
-
-void Cure::use(ICharacter &target) {
-  std::cout << "* heals " << target.getName();
-  std::cout << "'s wounds *" << std::endl;
-  return;
-}
+AMateria *Cure::clone(void) const { return new Cure(); }

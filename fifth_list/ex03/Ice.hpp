@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 22:27:10 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/09/28 23:16:40 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:33:54 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define ICE_HPP
 
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
 
 class Ice : public AMateria {
 public:
@@ -23,7 +22,6 @@ public:
   Ice &operator=(Ice const &);
   virtual ~Ice(void);
   virtual AMateria *clone(void) const;
-  virtual void use(ICharacter &);
 };
 
 #endif // !ICE_HPP

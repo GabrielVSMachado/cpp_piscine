@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 22:02:06 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/09/28 23:14:35 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:32:47 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class AMateria {
 public:
   AMateria(std::string const &);
   virtual ~AMateria(void);
+  AMateria& operator=(AMateria const &);
 
   std::string const &getType(void) const;
   virtual AMateria *clone(void) const = 0;

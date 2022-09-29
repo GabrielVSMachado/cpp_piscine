@@ -23,4 +23,20 @@ AMateria::~AMateria(void) {
   return;
 }
 
+void AMateria::use(ICharacter &target) {
+  if (this->type == "ice") {
+    std::cout << "* shoots an ice bolt at " << target.getName();
+    std::cout << " *" << std::endl;
+    return;
+  } else {
+    std::cout << "* heals " << target.getName();
+    std::cout << "'s wounds *" << std::endl;
+  }
+}
+
+AMateria& AMateria::operator=(AMateria const &other) {
+  this->type = other.getType();
+  return *this;
+}
+
 std::string const &AMateria::getType(void) const { return this->type; }
