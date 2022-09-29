@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:33:53 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/09/29 00:36:00 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:19:28 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,17 @@ void Character::equip(AMateria *m) {
 
 // BUG: _inventory order is not garranty when a item in the middle is unequip
 void Character::unequip(int item) {
-  if (item > 3 || item < 0) {
+  if (item > 3 || item < 0 || !this->_inventory_size ||
+      (unsigned int)item > this->_inventory_size - 1) {
     return;
   }
+
   this->_inventory[item] = NULL;
+  if ((unsigned int)item != this->_inventory_size - 1) {
+    for (unsigned int i = item + 1; i < 4; ++i) {
+      this->_inventory[i - 1] = this->_inventory[i];
+    }
+  }
   --this->_inventory_size;
 }
 

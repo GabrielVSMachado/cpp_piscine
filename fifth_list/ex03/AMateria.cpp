@@ -34,9 +34,4 @@ void AMateria::use(ICharacter &target) {
   }
 }
 
-AMateria& AMateria::operator=(AMateria const &other) {
-  this->type = other.getType();
-  return *this;
-}
-
 std::string const &AMateria::getType(void) const { return this->type; }

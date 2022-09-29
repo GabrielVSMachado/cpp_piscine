@@ -30,7 +30,7 @@ Ice::~Ice(void) {
 }
 
 Ice &Ice::operator=(Ice const &other) {
-  this->type = other.type;
+  (void)other;
   return *this;
 }
 
