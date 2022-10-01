@@ -28,17 +28,16 @@ Character::Character(Character const &other) {
 }
 
 Character::Character(std::string const &name)
-    : _inventory_size(0), _name(name) {
+    : _inventory(), _inventory_size(0), _name(name) {
   std::cout << "Character's constructor with std::string parameter called."
             << std::endl;
-  for (unsigned int i = 0; i < 4; ++i) {
-    this->_inventory[i] = NULL;
-  }
   return;
 }
 
 Character::~Character(void) {
   std::cout << "Character's destructor called." << std::endl;
+  while (this->_inventory_size)
+    delete this->_inventory[--this->_inventory_size];
   return;
 }
 
@@ -59,7 +58,6 @@ void Character::equip(AMateria *m) {
   ++this->_inventory_size;
 }
 
-// BUG: _inventory order is not garranty when a item in the middle is unequip
 void Character::unequip(int item) {
   if (item > 3 || item < 0 || !this->_inventory_size ||
       (unsigned int)item > this->_inventory_size - 1) {

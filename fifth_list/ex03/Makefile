@@ -1,7 +1,14 @@
 NAME = interface_and_recap
 override CXX = c++
-override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-override SRC = main.cpp Character.cpp AMateria.cpp Ice.cpp Cure.cpp
+override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -g3
+
+override SRC = main.cpp\
+	Character.cpp\
+	AMateria.cpp\
+	Ice.cpp\
+	Cure.cpp\
+	DropedItens.cpp
+
 override OBJ = $(SRC:%.cpp=%.o)
 override RM = rm -f
 
