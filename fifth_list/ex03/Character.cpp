@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:33:53 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/09/29 18:19:28 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:13:18 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ Character::~Character(void) {
 }
 
 Character &Character::operator=(Character const &other) {
+  this->_name = other._name;
   while (this->_inventory_size)
     delete this->_inventory[--this->_inventory_size];
   for (unsigned int i = 0; i < other._inventory_size; ++i) {
@@ -64,6 +65,7 @@ void Character::unequip(int item) {
     return;
   }
 
+  this->_dropedItens.add(this->_inventory[item]);
   this->_inventory[item] = NULL;
   if ((unsigned int)item != this->_inventory_size - 1) {
     for (unsigned int i = item + 1; i < 4; ++i) {
@@ -74,7 +76,7 @@ void Character::unequip(int item) {
 }
 
 void Character::use(int index, ICharacter &target) {
-  if (index < 0 || index > 3) {
+  if (index < 0 || (unsigned int)index > this->_inventory_size - 1) {
     return;
   }
   return this->_inventory[index]->use(target);

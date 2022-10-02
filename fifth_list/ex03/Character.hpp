@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:26:31 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/01 00:29:49 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/02 00:11:13 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define CHARACTER_HPP
 
 #include <string>
+#include "DropedItens.hpp"
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 
@@ -33,6 +34,7 @@ private:
   AMateria *_inventory[4];
   unsigned int _inventory_size;
   std::string _name;
+  DropedItens _dropedItens;
 };
 
 #endif // !CHARACTER_HPP

@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 00:28:28 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/01 02:14:28 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/01 23:59:43 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ public:
 private:
   struct Node {
     Node(AMateria const *);
-    Node& operator=(Node const *);
     virtual ~Node(void);
     AMateria const *content;
     Node *next;
+    static void clone(Node * &, Node const *);
   };
   Node *_head;
 };

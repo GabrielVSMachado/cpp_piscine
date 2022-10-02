@@ -24,14 +24,8 @@ AMateria::~AMateria(void) {
 }
 
 void AMateria::use(ICharacter &target) {
-  if (this->type == "ice") {
-    std::cout << "* shoots an ice bolt at " << target.getName();
-    std::cout << " *" << std::endl;
-    return;
-  } else {
-    std::cout << "* heals " << target.getName();
-    std::cout << "'s wounds *" << std::endl;
-  }
+  std::cout << "Unknow materia " << target.getName() << " behaviour"
+            << std::endl;
 }
 
 std::string const &AMateria::getType(void) const { return this->type; }

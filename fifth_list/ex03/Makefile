@@ -7,7 +7,8 @@ override SRC = main.cpp\
 	AMateria.cpp\
 	Ice.cpp\
 	Cure.cpp\
-	DropedItens.cpp
+	DropedItens.cpp\
+	MateriaSource.cpp
 
 override OBJ = $(SRC:%.cpp=%.o)
 override RM = rm -f

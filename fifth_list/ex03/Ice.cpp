@@ -34,4 +34,9 @@ Ice &Ice::operator=(Ice const &other) {
   return *this;
 }
 
+void Ice::use(ICharacter &target) {
+  std::cout << "* shoots an ice bolt at " << target.getName();
+  std::cout << " *" << std::endl;
+}
+
 AMateria *Ice::clone(void) const { return new Ice(); }

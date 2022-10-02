@@ -22,6 +22,7 @@ public:
   Cure &operator=(Cure const &);
   virtual ~Cure(void);
   virtual AMateria* clone(void) const;
+  virtual void use(ICharacter &);
 };
 
 #endif // !CURE_HPP

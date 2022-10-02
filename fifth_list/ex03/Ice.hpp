@@ -22,6 +22,7 @@ public:
   Ice &operator=(Ice const &);
   virtual ~Ice(void);
   virtual AMateria *clone(void) const;
+  virtual void use(ICharacter &);
 };
 
 #endif // !ICE_HPP

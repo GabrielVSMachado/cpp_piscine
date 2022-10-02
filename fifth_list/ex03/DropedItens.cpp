@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 00:28:55 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/01 02:14:27 by gvitor-s         ###   ########.fr       */
+/*   Created: 2022/10/01 23:50:17 by gvitor-s          #+#    #+#             */
+/*   Updated: 2022/10/02 00:02:31 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ DropedItens::~DropedItens(void) {
 DropedItens &DropedItens::operator=(DropedItens const &other) {
   delete this->_head;
   this->_head = NULL;
-  *this->_head = other._head;
+  DropedItens::Node::clone(this->_head, other._head);
   return *this;
 }
 
@@ -48,13 +48,14 @@ DropedItens::Node::~Node(void) {
   delete this->next;
 }
 
-DropedItens::Node &
-DropedItens::Node::operator=(DropedItens::Node const *other) {
-  DropedItens::Node *tmp = NULL;
-  if (!other) {
-    return *tmp;
+void DropedItens::Node::clone(Node *&to, Node const *from) {
+  DropedItens::Node* tmpNode;
+
+  while (from)
+  {
+    tmpNode = new DropedItens::Node(from->content->clone());
+    tmpNode->next = to;
+    to = tmpNode;
+    from = from->next;
   }
-  tmp = new DropedItens::Node(other->content->clone());
-  *tmp->next = other->next;
-  return *tmp;
 }
