@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include <stdexcept>
 #include <iostream>
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : BureaucracyConstitution(), _grade(150) {}
 
@@ -56,3 +56,15 @@ std::ostream& operator<<(std::ostream &out, Bureaucrat const &bureaucrat) {
 }
 
 unsigned int const &Bureaucrat::getGrade() const { return this->_grade; }
+
+void Bureaucrat::signForm(Form &toSign) const {
+  try {
+    toSign.beSigned(*this);
+    std::cout << this->getName() << " signed " << toSign.getName() << std::endl;
+    return;
+  }
+  catch (Form::GradeTooLowException const &e) {
+    std::cout << this->getName() << " couldn't sign " << toSign.getName();
+    std::cout << " because " << e.what() << std::endl;
+  }
+}

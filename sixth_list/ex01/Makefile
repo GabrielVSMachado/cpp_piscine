@@ -2,7 +2,7 @@ NAME = bureaucrat
 override CXX = c++
 override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Wshadow
 override RM = rm -f
-override SRC = main.cpp Bureaucrat.cpp
+override SRC = main.cpp Form.cpp BureaucracyConstitution.cpp Bureaucrat.cpp
 override OBJ = $(SRC:%.cpp=%.o)
 
 all: $(NAME)

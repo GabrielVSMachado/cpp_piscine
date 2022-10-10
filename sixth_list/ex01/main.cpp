@@ -10,46 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
 #include <stdexcept>
 #include <iostream>
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main ()
 {
   {
     try {
-      Bureaucrat newB("Gabriel", 170);
-    }
-    catch (std::exception const & e) {
-      std::cerr << e.what() << std::endl;
-    }
-  }
-  {
-    try {
-      Bureaucrat newB("Gabriel", 0);
-    }
-    catch (std::exception const & e) {
-      std::cerr << e.what() << std::endl;
-    }
-  }
-  {
-    Bureaucrat newDefault;
-    std::cout << newDefault << std::endl;
-    try {
-      newDefault.incrementGrade(150);
+      Form test("name", false, 151, 1);
     }
     catch (std::exception const &e) {
       std::cerr << e.what() << std::endl;
     }
   }
   {
-    Bureaucrat newDefault("Vitor", 10);
     try {
-      newDefault.decresceGrade(141);
+      Form test("name", false, 1, 151);
     }
-    catch (std::exception const & e) {
+    catch (std::exception const &e) {
       std::cerr << e.what() << std::endl;
     }
+  }
+  {
+    try {
+      Form test("name", false, 1, 0);
+    }
+    catch (std::exception const &e) {
+      std::cerr << e.what() << std::endl;
+    }
+  }
+  {
+    try {
+      Form test("name", false, 0, 1);
+    }
+    catch (std::exception const &e) {
+      std::cerr << e.what() << std::endl;
+    }
+  }
+  {
+    Bureaucrat b("Gabriel", 43);
+    Form f("42Test", false, 42, 1);
+
+    b.signForm(f);
   }
   return 0;
 }

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Bureaucrat.hpp"
 #include "Form.hpp"
 
 Form::Form()
@@ -51,5 +52,9 @@ unsigned int const &Form::getExecuteGrade() const {
 }
 
 void Form::beSigned(Bureaucrat const &bureaucrat)
-throw(GradeTHExcpt, GradeTLExcpt) {
+throw(GradeTLExcpt) {
+  if (bureaucrat.getGrade() > this->getSignGrade()) {
+    throw Form::GradeTooLowException();
+  }
+  this->_isSigned = true;
 }

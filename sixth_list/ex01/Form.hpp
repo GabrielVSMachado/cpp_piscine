@@ -10,14 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
-
 #include "BureaucracyConstitution.hpp"
-#include "Bureaucrat.hpp"
 #include <exception>
 #include <ostream>
 #include <string>
+
+
+#ifndef FORM_HPP
+#define FORM_HPP
+
+class Bureaucrat;
 
 class Form : public BureaucracyConstitution {
   public:
@@ -36,7 +38,7 @@ class Form : public BureaucracyConstitution {
     unsigned int const &getSignGrade() const;
     unsigned int const &getExecuteGrade() const;
 
-    void beSigned(Bureaucrat const &) throw(GradeTHExcpt, GradeTLExcpt);
+    void beSigned(Bureaucrat const &) throw(GradeTLExcpt);
 
   private:
     bool _isSigned;

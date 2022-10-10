@@ -36,11 +36,11 @@ std::string const &BureaucracyConstitution::getName() const {
 BureaucracyConstitution::GradeTooHighException::GradeTooHighException() {}
 char const *BureaucracyConstitution::GradeTooHighException::what() const throw()
 {
-  return "You must be the most low grade Bureaucrat I ever see.";
+  return "BureaucracyConstitution don't allow too high grade.";
 }
 
 BureaucracyConstitution::GradeTooLowException::GradeTooLowException() {}
 char const *BureaucracyConstitution::GradeTooLowException::what() const throw()
 {
-  return "You don't have enough grade to do this job.";
+  return "you don't have enough grade to do this job.";
 }
