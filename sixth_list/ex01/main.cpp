@@ -55,5 +55,10 @@ int main ()
 
     b.signForm(f);
   }
+  {
+    Form f("42Test", false, 42, 1);
+
+    std::cout << f << std::endl;
+  }
   return 0;
 }

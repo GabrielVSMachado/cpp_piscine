@@ -12,6 +12,7 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include <ostream>
 
 Form::Form()
   : BureaucracyConstitution(), _isSigned(false),
@@ -57,4 +58,11 @@ throw(GradeTLExcpt) {
     throw Form::GradeTooLowException();
   }
   this->_isSigned = true;
+}
+
+std::ostream& operator<<(std::ostream &o, Form const &f) {
+  o << f.getName() << ", form grade required to sign " << f.getSignGrade();
+  o << ", grade required to execute " << f.getExecuteGrade();
+  o << ". This form is signed? " << f.isSigned();
+  return o;
 }
