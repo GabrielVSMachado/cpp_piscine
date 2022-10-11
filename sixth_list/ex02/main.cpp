@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 23:03:08 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/10 23:29:50 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/10 23:29:43 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int main ()
   {
     ShrubberyCreationForm form("Gondor");
     Bureaucrat regent("Denetor II", 137);
-    try {
-      regent.signForm(form);
-      form.execute(regent);
-    }
-    catch (AForm::GradeTLExcpt const &e) {
-      std::cerr << e.what() << std::endl;
-    }
+    regent.signForm(form);
+    regent.executeForm(form);
+  }
+  {
+    ShrubberyCreationForm form("Gondor");
+    Bureaucrat regent("Denetor II", 144);
+    regent.signForm(form);
+    regent.executeForm(form);
   }
   return 0;
 }

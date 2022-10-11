@@ -47,6 +47,8 @@ class AForm : virtual public BureaucracyConstitution {
 
     virtual void execute(Bureaucrat const &) const throw(
         NotSignException, GradeTLExcpt);
+
+  protected:
     virtual void doTheExecution() const = 0;
 
   private:

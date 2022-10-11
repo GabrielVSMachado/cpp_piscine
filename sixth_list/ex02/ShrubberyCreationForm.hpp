@@ -23,6 +23,7 @@ class ShrubberyCreationForm : public AForm {
     ShrubberyCreationForm &operator=(ShrubberyCreationForm const &);
     virtual ~ShrubberyCreationForm();
 
+  private:
     virtual void doTheExecution() const;
 };
 
