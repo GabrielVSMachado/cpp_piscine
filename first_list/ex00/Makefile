@@ -1,13 +1,13 @@
 override NAME = megaphone
-override CFLAGS = -std=c++98 -Wall -Wextra -Werror -Wno-unused
-override CC = c++
+override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
+override CXX = c++
 
 OBJ = megaphone.o
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
 	$(RM) megaphone.o
@@ -16,12 +16,9 @@ fclean: clean
 	$(RM) $(NAME)
 
 test: all
-	@echo "shhhhh... I think the students are asleep..."
 	@echo
 	./$(NAME) "shhhhh... I think the students are asleep..."
 
-	@echo
-	@echo Damnit " ! " "Sorry students, I thought this thing was off."
 	@echo
 	./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
 
