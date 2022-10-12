@@ -20,7 +20,6 @@ class BureaucracyConstitution {
     BureaucracyConstitution();
     BureaucracyConstitution(std::string const &);
     BureaucracyConstitution(BureaucracyConstitution const &);
-    BureaucracyConstitution& operator=(BureaucracyConstitution const &);
     virtual ~BureaucracyConstitution();
 
     class GradeTooHighException : public std::exception {

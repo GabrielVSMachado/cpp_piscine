@@ -37,6 +37,12 @@ AForm::AForm(
   }
 }
 
+AForm& AForm::operator=(AForm const &other) {
+  if (this == &other) { return *this; }
+  this->_isSigned = other._isSigned;
+  return *this;
+}
+
 AForm::~AForm() {}
 
 bool const &AForm::isSigned() const { return this->_isSigned; }

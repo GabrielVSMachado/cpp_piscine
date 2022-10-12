@@ -25,12 +25,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &other)
     : BureaucracyConstitution(other.getName()),
     AForm(other.getName(), other.isSigned(), 145, 137) {}
 
-ShrubberyCF& ShrubberyCreationForm::operator=(ShrubberyCF const &other) {
-  if (this == &other) { return *this; }
-  *this = ShrubberyCreationForm(other);
-  return *this;
-}
-
 ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
 void ShrubberyCreationForm::doTheExecution() const {

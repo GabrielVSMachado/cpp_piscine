@@ -22,13 +22,6 @@ BureaucracyConstitution::BureaucracyConstitution(std::string const &name)
 
 BureaucracyConstitution::~BureaucracyConstitution() {}
 
-BureaucracyConstitution& BureaucracyConstitution::operator=(
-    BureaucracyConstitution const &other) {
-  if (this == &other) { return *this; }
-  *this = BureaucracyConstitution(other);
-  return *this;
-}
-
 std::string const &BureaucracyConstitution::getName() const {
   return this->_name;
 }

@@ -13,7 +13,9 @@
 #include <stdexcept>
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardomForm.hpp"
 
 int main ()
 {
@@ -52,6 +54,38 @@ int main ()
     Bureaucrat regent("Denetor II", 144);
     regent.signForm(form);
     regent.executeForm(form);
+  }
+  {
+    RobotomyRequestForm form("TestRobotomy");
+    Bureaucrat bumblebee("Bumblebee", 73);
+    try {
+      form.execute(bumblebee);
+    }
+    catch (RobotomyRequestForm::NotSignException const &e) {
+      std::cout << "The Robotomy Failed." << std::endl;
+      std::cerr << e.what() << std::endl;
+    }
+  }
+  {
+    RobotomyRequestForm form("TestRobotomy");
+    Bureaucrat bumblebee("Bumblebee", 73);
+    try {
+      bumblebee.executeForm(form);
+    }
+    catch (std::exception const &e) {
+      std::cerr << e.what() << std::endl;
+    }
+  }
+  {
+    PresidentialPardomForm form("Trump");
+    Bureaucrat bumblebee("Bumblebee", 73);
+    try {
+      bumblebee.signForm(form);
+      bumblebee.executeForm(form);
+    }
+    catch (std::exception const &e) {
+      std::cerr << e.what() << std::endl;
+    }
   }
   return 0;
 }

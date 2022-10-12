@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include "AForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 Bureaucrat::Bureaucrat() : BureaucracyConstitution(), _grade(150) {}
 

@@ -6,7 +6,9 @@ override SRC = main.cpp\
 	AForm.cpp\
 	BureaucracyConstitution.cpp\
 	Bureaucrat.cpp\
-	ShrubberyCreationForm.cpp
+	ShrubberyCreationForm.cpp\
+	RobotomyRequestForm.cpp\
+	PresidentialPardomForm.cpp
 
 override OBJ = $(SRC:%.cpp=%.o)
 

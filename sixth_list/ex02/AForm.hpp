@@ -31,6 +31,7 @@ class AForm : virtual public BureaucracyConstitution {
         unsigned int const &,
         unsigned int const &
     ) throw(GradeTLExcpt, GradeTHExcpt);
+    AForm& operator=(AForm const &);
     virtual ~AForm();
 
     bool const &isSigned() const;
