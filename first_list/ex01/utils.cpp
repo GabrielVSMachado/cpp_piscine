@@ -131,6 +131,5 @@ Contact getNewContact(void) {
 bool validateContact(Contact const &newContact) {
   return (validateNames(newContact.getFirstName()) &&
           validateNames(newContact.getLastName()) &&
-          validateNames(newContact.getNickName()) &&
           validateNumber(newContact.getPhoneNumber()));
 }

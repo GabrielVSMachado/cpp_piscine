@@ -34,8 +34,9 @@ int main(void) {
     if (inputCommand == "ADD") {
 
       if (!book.add()) {
-        std::cout << "User not added: use your brain to find the error"
-                  << std::endl;
+        std::cerr << std::endl;
+        std::cerr << "FirstName and LastName must be only letters. "
+          << "PhoneNumber must be only numbers." << std::endl;
         continue;
       }
       std::cout << "User added with success" << std::endl;
