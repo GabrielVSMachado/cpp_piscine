@@ -26,20 +26,20 @@ static std::string formatString(std::string str) {
 
 static void printWithPadding(std::string str) {
   std::cout.width(10);
-  std::cout << std::left << str << '|';
+  std::cout << std::right << str << '|';
 }
 
 static void printWithPadding(unsigned int index) {
   std::cout.width(10);
-  std::cout << std::left << index << '|';
+  std::cout << std::right << index << '|';
 }
 
 static void printFormatedString(Contact const *currentContact,
                                 unsigned int index) {
   std::string formatedName, formatedLastName, formatedNickName;
 
-  formatedName = formatString(currentContact->firstName);
-  formatedLastName = formatString(currentContact->lastName);
+  formatedName = formatString(currentContact->getFirstName());
+  formatedLastName = formatString(currentContact->getLastName());
   formatedNickName = formatString(currentContact->getNickName());
 
   printWithPadding(index);
@@ -54,8 +54,8 @@ void printListContacts(PhoneBook const &book) {
   std::string valueToPrint;
   Contact currentContact;
 
-  bookSize = bookSize < 8 ? bookSize - 1 : 7;
-  for (unsigned int i = 0; i <= bookSize; i++) {
+  bookSize = bookSize < 8 ? bookSize : 8;
+  for (unsigned int i = 0; i < bookSize; i++) {
     currentContact = book.getContact(i);
     printFormatedString(&currentContact, i);
   }
@@ -70,11 +70,12 @@ void printHeader(void) {
 }
 
 void printContactInformation(Contact const &toPrint) {
-  std::cout << toPrint.firstName << std::endl;
-  std::cout << toPrint.lastName << std::endl;
-  std::cout << toPrint.getNickName() << std::endl;
-  std::cout << toPrint.getPhoneNumber() << std::endl;
-  std::cout << toPrint.getDarkestSecret() << std::endl;
+  std::cout << std::endl;
+  std::cout << "FirstName: " << toPrint.getFirstName() << std::endl;
+  std::cout << "LastName: " << toPrint.getLastName() << std::endl;
+  std::cout << "NickName: " << toPrint.getNickName() << std::endl;
+  std::cout << "PhoneNumber: " << toPrint.getPhoneNumber() << std::endl;
+  std::cout << "DarkestSecret: " << toPrint.getDarkestSecret() << std::endl;
 }
 
 bool validateNames(std::string const name) {
@@ -95,8 +96,7 @@ bool validateNumber(std::string const number) {
   return true;
 }
 
-std::string getValueFromCIN(void)
-{
+std::string getValueFromCIN(void) {
   std::string value;
 
   std::cin >> value;
@@ -105,4 +105,32 @@ std::string getValueFromCIN(void)
     exit(1);
   }
   return value;
+}
+
+Contact getNewContact(void) {
+  std::string firstName;
+  std::string lastName;
+  std::string nickName;
+  std::string phoneNumber;
+  std::string darkestSecret;
+
+  std::cout << "FirstName: ";
+  firstName = getValueFromCIN();
+  std::cout << "LastName: ";
+  lastName = getValueFromCIN();
+  std::cout << "nickName: ";
+  nickName = getValueFromCIN();
+  std::cout << "phoneNumber: ";
+  phoneNumber = getValueFromCIN();
+  std::cout << "darkestSecret: ";
+  darkestSecret = getValueFromCIN();
+
+  return Contact(firstName, lastName, nickName, phoneNumber, darkestSecret);
+}
+
+bool validateContact(Contact const &newContact) {
+  return (validateNames(newContact.getFirstName()) &&
+          validateNames(newContact.getLastName()) &&
+          validateNames(newContact.getNickName()) &&
+          validateNumber(newContact.getPhoneNumber()));
 }

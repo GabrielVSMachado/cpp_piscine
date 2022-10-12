@@ -27,39 +27,10 @@ Contact PhoneBook::getContact(unsigned int index) const {
 
 unsigned int PhoneBook::getBookSize(void) const { return this->bookSize; }
 
-bool PhoneBook::validateContact(Contact const &newContact) const {
-  return (validateNames(newContact.firstName) &&
-          validateNames(newContact.lastName) &&
-          validateNames(newContact.getNickName()) &&
-          validateNumber(newContact.getPhoneNumber()));
-}
-
-Contact PhoneBook::getNewContact(void) {
-  std::string firstName;
-  std::string lastName;
-  std::string nickName;
-  std::string phoneNumber;
-  std::string darkestSecret;
-
-  std::cout << "FirstName: ";
-  firstName = getValueFromCIN();
-  std::cout << "LastName: ";
-  lastName = getValueFromCIN();
-  std::cout << "nickName: ";
-  nickName = getValueFromCIN();
-  std::cout << "phoneNumber: ";
-  phoneNumber = getValueFromCIN();
-  std::cout << "darkestSecret: ";
-  darkestSecret = getValueFromCIN();
-
-  Contact newContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
-  return newContact;
-}
-
 bool PhoneBook::add(void) {
-  Contact newContact = PhoneBook::getNewContact();
+  Contact newContact = getNewContact();
 
-  if (this->validateContact(newContact)) {
+  if (validateContact(newContact)) {
     this->book[this->bookSize % 8] = newContact;
     this->bookSize += 1;
     return true;
@@ -74,6 +45,10 @@ void PhoneBook::search(PhoneBook const &book) {
   printHeader();
   printListContacts(book);
 
+  if (!book.bookSize) {
+    return;
+  }
+
   while (true) {
     std::cout << "Input contact's index wanted: ";
     inputIndex = getValueFromCIN();
@@ -82,13 +57,16 @@ void PhoneBook::search(PhoneBook const &book) {
       break;
     }
 
-    std::cout << "Index must a positive number: " << std::endl;
+    std::cerr << std::endl;
+    std::cerr << "Index must a positive number !!!" << std::endl;
+    std::cerr << std::endl;
   }
 
   index = std::atoi(inputIndex.c_str());
 
-  if (index > book.getBookSize()) {
-    std::cout << "Index out of range" << std::endl;
+  if (index > 7 || index >= book.getBookSize()) {
+    std::cerr << std::endl;
+    std::cerr << "Index out of range !!!" << std::endl;
     return;
   }
   printContactInformation(book.getContact(index));

@@ -25,15 +25,16 @@ public:
   Contact(std::string firstName, std::string lastName, std::string nickName,
           std::string phoneNumber, std::string darkestSecret);
 
-  std::string getDarkestSecret(void) const;
-  std::string getNickName(void) const;
-  std::string getPhoneNumber(void) const;
-  Contact &operator=(const Contact &);
-
-  std::string firstName;
-  std::string lastName;
+  std::string const &getDarkestSecret() const;
+  std::string const &getNickName() const;
+  std::string const &getPhoneNumber() const;
+  std::string const &getFirstName() const;
+  std::string const &getLastName() const;
+  Contact &operator=(Contact const &);
 
 private:
+  std::string firstName;
+  std::string lastName;
   std::string nickName;
   std::string phoneNumber;
   std::string darkestSecret;

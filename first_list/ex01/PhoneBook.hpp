@@ -29,8 +29,6 @@ public:
 private:
   Contact book[8];
   unsigned int bookSize;
-  bool validateContact(Contact const &newContact) const;
-  static Contact getNewContact(void);
 };
 
 #endif // !PHONEBOOK_HPP
