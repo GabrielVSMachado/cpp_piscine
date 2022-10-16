@@ -1,7 +1,7 @@
 NAME = types
 override CXX = c++
 override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Wconversion
-override SRC = main.cpp
+override SRC = main.cpp Types.cpp
 override OBJ = $(SRC:%.cpp=%.o)
 
 all: $(NAME)

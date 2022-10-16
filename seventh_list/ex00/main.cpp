@@ -10,27 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Types.hpp"
 #include <cctype>
-#include <cstdlib>
 #include <iostream>
+#include <cmath>
 
 int main (int argc, char *argv[])
 {
+  Types* types;
+
   if (argc != 2) {
     return 1;
   }
-  char c = argv[1][0];
-  double test = static_cast<double>(c);
-  int i = static_cast<int>(c);
-  float f = static_cast<float>(c);
-  std::cout << "Double: " << static_cast<double>(test) << std::endl;
-  if (std::isprint(c)) {
-    std::cout << "Char: " << c << std::endl;
+
+  try {
+    types = new Types(argv[1]);
+    std::cout << *types << std::endl;
   }
-  else {
-    std::cout << "Char: Non displayable." << std::endl;
+  catch (std::exception const &e) {
+    std::cerr << e.what() << '\n';
+    return 1;
   }
-  std::cout << "Int: " << i << std::endl;
-  std::cout << "Float: " << f << 'f' << std::endl;
   return 0;
 }

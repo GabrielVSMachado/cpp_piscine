@@ -14,18 +14,19 @@
 #define TYPES_HPP
 
 #include <exception>
+#include <ostream>
 #include <string>
 
 class Types {
   public:
 
-    class NonValidLiteral : std::exception {
+    class NonValidLiteral : public std::exception {
       public:
         NonValidLiteral();
         virtual char const  *what() const throw();
     };
 
-    class Overflow : std::exception {
+    class Overflow : public std::exception {
       public:
         Overflow();
         virtual char const  *what() const throw();
@@ -41,14 +42,15 @@ class Types {
     int     const &getInt()    const;
     float   const &getFloat()  const;
     double  const &getDouble() const;
-
-    void display() const;
+    bool    const &getIsMathLimit() const;
 
   private:
     char    _value_as_char;
     int     _value_as_int;
     float   _value_as_float;
     double  _value_as_double;
+    bool    _isMathLimit;
 };
 
+std::ostream& operator<<(std::ostream &, Types const &);
 #endif // !Types_hpp
