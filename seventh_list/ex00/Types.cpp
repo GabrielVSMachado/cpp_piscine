@@ -63,7 +63,7 @@ static bool notOverOrUnderFlowInt(std::string const &number) {
 Types::Types(std::string const &original) throw(Overflow, NonValidLiteral)
     : _isMathLimit(checkMathLimits(original)) {
   errno = 0;
-  if (original.length() > 1 && this->_isMathLimit
+  if (original.length() > 1 && !this->_isMathLimit
       && isNotValidInput(original)) {
     throw Types::NonValidLiteral();
   } else if (original.length() == 1 && !std::isdigit(original[0])) {
@@ -133,7 +133,13 @@ std::ostream &operator<<(std::ostream &o, Types const &type) {
   } else {
     o << type.getInt() << '\n';
   }
-  o << "float: " << type.getFloat() << "f\n";
-  o << "double: " << type.getDouble();
+  if (!type.getIsMathLimit()
+      && ((type.getDouble() * 10 / type.getDouble()) - 100) < 0.00001) {
+    o << "float: " << type.getFloat() << ".0f\n";
+    o << "double: " << type.getDouble() << ".0";
+  } else {
+    o << "float: " << type.getFloat() << "f\n";
+    o << "double: " << type.getDouble();
+  }
   return o;
 }
