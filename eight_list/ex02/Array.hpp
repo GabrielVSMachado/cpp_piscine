@@ -33,15 +33,14 @@ class Array {
       if (this == &other) {
         return *this;
       }
-      else if (!other._size && this->_size) {
+      else if (other._size != this->_size) {
         delete [] this->_array;
-        this->_size = 0;
         this->_array = NULL;
-        return *this;
-      } else if (other._size != this->_size) {
-        delete [] this->_array;
-        this->_array = new T[other._size];
         this->_size = other._size;
+        if (!this->_size) {
+          return *this;
+        }
+        this->_array = new T[this->_size];
       }
 
       for (unsigned int i = 0; i < other._size; ++i) {
@@ -50,12 +49,21 @@ class Array {
       return *this;
     }
 
-    T &operator[](unsigned int const& index) throw(std::out_of_range) {
-      if (index < 0 || index > this->_size - 1) {
-        throw std::exception();
+    T &operator[](std::size_t const &index) throw(std::out_of_range) {
+      if (index >= this->_size) {
+        throw std::out_of_range("Index out of range");
       }
       return this->_array[index];
     }
+
+    T const &operator[](std::size_t const &index) const throw(
+        std::out_of_range) {
+      if (index >= this->_size) {
+        throw std::out_of_range("Index out of range");
+      }
+      return this->_array[index];
+    }
+
 
     virtual ~Array() { delete [] this->_array; }
 
@@ -66,4 +74,11 @@ class Array {
     unsigned int _size;
 };
 
+template <typename T>
+std::ostream& operator<<(std::ostream& o, Array<T> const &a) {
+  for (std::size_t i = 0; i < a.size(); i++) {
+    o << a[i] << ' ';
+  }
+  return o;
+}
 #endif // !ARRAY_HPP
