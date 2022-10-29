@@ -6,22 +6,21 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 13:18:05 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/10 22:22:37 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:27:50 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "BureaucracyConstitution.hpp"
-#include <exception>
-#include <ostream>
-#include <string>
 
 
 #ifndef AFORM_HPP
 #define AFORM_HPP
 
+#include "Exceptions.hpp"
+#include <ostream>
+#include <string>
+
 class Bureaucrat;
 
-class AForm : virtual public BureaucracyConstitution {
+class AForm {
   public:
     AForm();
     AForm(AForm const &);
@@ -37,6 +36,7 @@ class AForm : virtual public BureaucracyConstitution {
     bool const &isSigned() const;
     unsigned int const &getSignGrade() const;
     unsigned int const &getExecuteGrade() const;
+    std::string const &getName() const;
 
     void beSigned(Bureaucrat const &) throw(GradeTLExcpt);
 
@@ -54,6 +54,7 @@ class AForm : virtual public BureaucracyConstitution {
 
   private:
     bool _isSigned;
+    std::string const _name;
     unsigned int const _requiredSign;
     unsigned int const _requiredExecute;
 };

@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:27:53 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/10 23:04:13 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:30:02 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include <ostream>
 
 AForm::AForm()
-  : BureaucracyConstitution(), _isSigned(false),
+  : _isSigned(false), _name("AForm"),
   _requiredSign(150),_requiredExecute(150) {}
 
 AForm::AForm(AForm const &other)
-: BureaucracyConstitution(other), _isSigned(other._isSigned),
+: _isSigned(other._isSigned), _name(other._name),
 _requiredSign(other._requiredSign), _requiredExecute(other._requiredExecute){}
 
 AForm::AForm(
@@ -27,13 +27,13 @@ AForm::AForm(
     bool const &isSigned,
     unsigned int const &requiredSign,
     unsigned int const &requiredExecute) throw(GradeTLExcpt, GradeTHExcpt)
-  : BureaucracyConstitution(name), _isSigned(isSigned),
+  : _isSigned(isSigned), _name(name),
   _requiredSign(requiredSign), _requiredExecute(requiredExecute) {
 
   if (requiredExecute > 150 || requiredSign > 150) {
-    throw AForm::GradeTooLowException();
+    throw GradeTooLowException();
   } else if (requiredSign < 1 || requiredExecute < 1) {
-    throw AForm::GradeTooHighException();
+    throw GradeTooHighException();
   }
 }
 
@@ -47,6 +47,7 @@ AForm::~AForm() {}
 
 bool const &AForm::isSigned() const { return this->_isSigned; }
 unsigned int const &AForm::getSignGrade() const { return this->_requiredSign; }
+std::string const &AForm::getName() const { return this->_name; }
 unsigned int const &AForm::getExecuteGrade() const {
   return this->_requiredExecute;
 }
@@ -54,7 +55,7 @@ unsigned int const &AForm::getExecuteGrade() const {
 void AForm::beSigned(Bureaucrat const &bureaucrat)
 throw(GradeTLExcpt) {
   if (bureaucrat.getGrade() > this->getSignGrade()) {
-    throw AForm::GradeTooLowException();
+    throw GradeTooLowException();
   }
   this->_isSigned = true;
 }

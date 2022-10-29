@@ -4,7 +4,7 @@ override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Wshadow
 override RM = rm -f
 override SRC = main.cpp\
 	AForm.cpp\
-	BureaucracyConstitution.cpp\
+	Exceptions.cpp\
 	Bureaucrat.cpp\
 	ShrubberyCreationForm.cpp\
 	RobotomyRequestForm.cpp\
