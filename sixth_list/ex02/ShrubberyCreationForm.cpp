@@ -6,24 +6,23 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 21:55:16 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/10 23:33:25 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:38:14 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
-#include "BureaucracyConstitution.hpp"
+#include "Exceptions.hpp"
 #include <fstream>
 #include <iostream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-    : AForm("DefaultTarget", false, 145, 137) {};
+    : Form("DefaultTarget", false, 145, 137) {};
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &nameTarget)
-    : BureaucracyConstitution(nameTarget), AForm(nameTarget, false, 145, 137) {}
+    : Form(nameTarget, false, 145, 137) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &other)
-    : BureaucracyConstitution(other.getName()),
-    AForm(other.getName(), other.isSigned(), 145, 137) {}
+    : Form(other.getName(), other.isSigned(), 145, 137) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {};
 

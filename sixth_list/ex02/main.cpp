@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 23:03:08 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/10 23:29:43 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:51:47 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main ()
     try {
       form.execute(regent);
     }
-    catch (AForm::NotSignException const &e) {
+    catch (Form::NotSignException const &e) {
       std::cerr << e.what() << std::endl;
     }
   }
@@ -39,7 +39,7 @@ int main ()
       regent.signForm(form);
       form.execute(regent);
     }
-    catch (AForm::GradeTLExcpt const &e) {
+    catch (GradeTLExcpt const &e) {
       std::cerr << e.what() << std::endl;
     }
   }
@@ -61,7 +61,7 @@ int main ()
     try {
       form.execute(bumblebee);
     }
-    catch (RobotomyRequestForm::NotSignException const &e) {
+    catch (std::exception const &e) {
       std::cout << "The Robotomy Failed." << std::endl;
       std::cerr << e.what() << std::endl;
     }
@@ -77,11 +77,11 @@ int main ()
     }
   }
   {
-    PresidentialPardomForm form("Trump");
-    Bureaucrat bumblebee("Bumblebee", 73);
+    PresidentialPardomForm form("The Wall");
+    Bureaucrat Trump("Trump", 73);
     try {
-      bumblebee.signForm(form);
-      bumblebee.executeForm(form);
+      Trump.signForm(form);
+      Trump.executeForm(form);
     }
     catch (std::exception const &e) {
       std::cerr << e.what() << std::endl;

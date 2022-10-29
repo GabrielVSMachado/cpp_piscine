@@ -6,24 +6,21 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:15:28 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/12 13:22:35 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:42:47 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardomForm.hpp"
-#include "BureaucracyConstitution.hpp"
 #include <iostream>
 
 PresidentialPardomForm::PresidentialPardomForm()
-    : BureaucracyConstitution("DefaultPresident"),
-      AForm("DefaultPresident", false, 25, 5) {}
+    : Form("DefaultPresident", false, 25, 5) {}
 
 PresidentialPardomForm::PresidentialPardomForm(std::string const &nameTarget)
-    : BureaucracyConstitution(nameTarget), AForm(nameTarget, false, 25, 5) {}
+    : Form(nameTarget, false, 25, 5) {}
 
 PresidentialPardomForm::PresidentialPardomForm(
-    PresidentialPardomForm const &other)
-    : BureaucracyConstitution(other.getName()), AForm(other) {}
+    PresidentialPardomForm const &other) : Form(other) {}
 
 PresidentialPardomForm::~PresidentialPardomForm() {}
 

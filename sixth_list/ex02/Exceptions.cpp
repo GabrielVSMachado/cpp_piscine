@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Exceptions.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 11:36:58 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/12 12:21:32 by gvitor-s         ###   ########.fr       */
+/*   Created: 2022/10/09 13:57:30 by gvitor-s          #+#    #+#             */
+/*   Updated: 2022/10/29 14:20:06 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+#include "Exceptions.hpp"
 
-#include "Form.hpp"
+GradeTooHighException::GradeTooHighException() {}
 
-class RobotomyRequestForm : public Form {
-  public:
-    RobotomyRequestForm();
-    RobotomyRequestForm(std::string const &);
-    RobotomyRequestForm(RobotomyRequestForm const &);
-    virtual ~RobotomyRequestForm();
+char const *GradeTooHighException::what() const throw() {
+  return "BureaucracyConstitution don't allow too high grade.";
+}
 
-    virtual void doTheExecution() const;
-};
+GradeTooLowException::GradeTooLowException() {}
 
-#endif // !RobotomyRequestForm_hpp
+char const *GradeTooLowException::what() const throw() {
+  return "you don't have enough grade to do this job.";
+}
