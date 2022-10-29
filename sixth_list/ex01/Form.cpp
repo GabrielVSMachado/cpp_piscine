@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:27:53 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/09 15:33:32 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/10/29 13:17:01 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,26 @@
 #include <ostream>
 
 Form::Form()
-  : BureaucracyConstitution(), _isSigned(false),
-  _requiredSign(150),_requiredExecute(150) {}
+  : _isSigned(false), _name("Form"), _requiredSign(150),
+  _requiredExecute(150) {}
 
 Form::Form(Form const &other)
-: BureaucracyConstitution(other), _isSigned(other._isSigned),
-_requiredSign(other._requiredSign), _requiredExecute(other._requiredExecute){}
+  : _isSigned(other._isSigned), _name(other._name),
+_requiredSign(other._requiredSign), _requiredExecute(other._requiredExecute) {}
 
 Form::Form(
     std::string const &name,
     bool const &isSigned,
     unsigned int const &requiredSign,
     unsigned int const &requiredExecute) throw(GradeTLExcpt, GradeTHExcpt)
-  : BureaucracyConstitution(name), _isSigned(isSigned),
+  : _isSigned(isSigned), _name(name),
   _requiredSign(requiredSign), _requiredExecute(requiredExecute) {
 
   if (requiredExecute > 150 || requiredSign > 150) {
-    throw Form::GradeTooLowException();
+    throw GradeTooLowException();
   } else if (requiredSign < 1 || requiredExecute < 1) {
-    throw Form::GradeTooHighException();
+    throw GradeTooHighException();
   }
-
 }
 
 Form& Form::operator=(Form const &other) {
@@ -48,14 +47,14 @@ Form::~Form() {}
 
 bool const &Form::isSigned() const { return this->_isSigned; }
 unsigned int const &Form::getSignGrade() const { return this->_requiredSign; }
+std::string const &Form::getName() const { return this->_name; }
 unsigned int const &Form::getExecuteGrade() const {
   return this->_requiredExecute;
 }
 
-void Form::beSigned(Bureaucrat const &bureaucrat)
-throw(GradeTLExcpt) {
+void Form::beSigned(Bureaucrat const &bureaucrat) throw(GradeTLExcpt) {
   if (bureaucrat.getGrade() > this->getSignGrade()) {
-    throw Form::GradeTooLowException();
+    throw GradeTooLowException();
   }
   this->_isSigned = true;
 }

@@ -1,9 +1,9 @@
-NAME = bureaucrat
+NAME = mutantstack
 override CXX = c++
-override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Wshadow
+override CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 override RM = rm -f
-override SRC = main.cpp Form.cpp Exceptions.cpp Bureaucrat.cpp
-override OBJ = $(SRC:%.cpp=%.o)
+override SRC = main.cpp
+override OBJ = main.o
 
 all: $(NAME)
 
