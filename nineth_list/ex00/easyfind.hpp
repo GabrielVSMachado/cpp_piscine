@@ -6,7 +6,7 @@
 /*   By: gvitor-s <gvitor-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:43:19 by gvitor-s          #+#    #+#             */
-/*   Updated: 2022/10/23 13:49:10 by gvitor-s         ###   ########.fr       */
+/*   Updated: 2022/11/02 22:11:45 by gvitor-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 #define EASYFIND_HPP
 
 #include <algorithm>
-#include <exception>
 #include <iterator>
 #include <vector>
-
-class NotFoundException : std::exception {
-  public:
-    virtual char const* what() const throw() {
-      return "Not found value in container passed";
-    }
-};
+#include "NotFoundException.hpp"
 
 template<typename T>
 int& easyfind(T &container, int const &value) throw(NotFoundException) {
